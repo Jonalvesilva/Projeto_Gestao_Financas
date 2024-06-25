@@ -10,3 +10,13 @@ body {
 .swiper-pagination-bullet-active {
   background-color: white !important;
 }
+
+@media (min-width: 640px) {
+  table {
+    display: inline-table !important;
+  }
+
+  thead tr:not(:first-child) {
+    display: none;
+  }
+}

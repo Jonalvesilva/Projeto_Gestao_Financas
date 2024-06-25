@@ -10,4 +10,5 @@ export const controlNumber = [
   "8",
   "9",
   "Backspace",
+  ",",
 ];

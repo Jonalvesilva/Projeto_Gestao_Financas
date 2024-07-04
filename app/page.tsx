@@ -4,7 +4,7 @@ import Container from "./components/Container";
 import Field from "./components/Field";
 import { Table } from "./components/Table";
 import { PaginationButtons } from "./components/PaginationButtons";
-import { setAddValor } from "./constants/setValor";
+import { useEffectSetValor } from "./utils/useEffectSetValor";
 
 interface Row {
   descricao: string;
@@ -26,11 +26,7 @@ const Home: React.FC = () => {
   const [valor, setValor] = useState(initialValor);
   const itemsPerPage = 4;
 
-  useEffect(() => {
-    return () => {
-      setAddValor(setInitial);
-    };
-  }, []);
+  useEffectSetValor(setInitial);
 
   useEffect(() => {
     const startIndex = (page - 1) * itemsPerPage;

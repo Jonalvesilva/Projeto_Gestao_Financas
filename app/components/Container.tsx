@@ -11,12 +11,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
 
-export default function Container() {
+export default function Container(valor?: any) {
   return (
     <Swiper
       className=" w-[300px] h-[240px] min-[640px]:w-[640px] min-[1024px]:w-[1024px] mt-12 flex justify-evenly "
       modules={[Navigation, Pagination]}
-      loop={true}
       grabCursor={true}
       pagination={{ clickable: true }}
       breakpoints={breakpoints}
@@ -31,6 +30,7 @@ export default function Container() {
               className="text-green-600 animate-pulse delay-100"
             />
           }
+          valor={valor.valor.entrada}
         />
       </SwiperSlide>
       <SwiperSlide className="p-6">
@@ -43,6 +43,7 @@ export default function Container() {
               className="text-red-600 animate-pulse delay-100"
             />
           }
+          valor={valor.valor.saida}
         />
       </SwiperSlide>
       <SwiperSlide className=" p-6">
@@ -55,6 +56,7 @@ export default function Container() {
               className=" animate-pulse delay-100"
             />
           }
+          valor={valor.valor.total}
         />
       </SwiperSlide>
     </Swiper>

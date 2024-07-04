@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
+import { success } from "../constants/toast";
 
 type Table = {
   descricao: string;
@@ -15,10 +16,6 @@ export type field = {
   setInitial: (e: any) => void;
 };
 
-function isFloat(value: any): boolean {
-  return typeof value === "number" && Number.isFinite(value) && value % 1 !== 0;
-}
-
 export function Table({ rows, initial, setInitial }: field) {
   const handleRemoverItem = (index: any) => {
     if (initial.includes(rows[index])) {
@@ -29,6 +26,7 @@ export function Table({ rows, initial, setInitial }: field) {
       arr.splice(i, 1);
       setInitial(arr);
     }
+    success("Removido com Sucesso");
   };
 
   return (
@@ -70,9 +68,7 @@ export function Table({ rows, initial, setInitial }: field) {
                 {element.descricao}
               </td>
               <td className="border-grey-light border  p-2 h-11 text-center">
-                {isFloat(+element.valor.replace(",", "."))
-                  ? `R$: ${element.valor}`
-                  : `R$: ${element.valor},00`}
+                {`R$ ${element.valor}`}
               </td>
               <td className="border-grey-light border  p-2 h-11 text-center">
                 {element.tipo == "entrada" ? (

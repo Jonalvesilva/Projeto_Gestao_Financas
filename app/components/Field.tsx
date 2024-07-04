@@ -1,7 +1,16 @@
 "use client";
 import { controlNumber } from "../constants/controlNumber";
+import { moedaInput, moedaFormat } from "../constants/moedaInput";
+import { useEffect, useState } from "react";
 
 export default function Field() {
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    moedaInput("valor");
+    moedaFormat("valor");
+  }, []);
+
   return (
     <div
       className="w-[250px] min-[640px]:w-[580px] lg:w-[92%] lg:ml-6 bg-white rounded-xl p-3 flex flex-col 
@@ -13,6 +22,7 @@ export default function Field() {
           <label className="text-md pl-1">Descrição</label>
           <input
             type="text"
+            id="descricao"
             placeholder="Digite a descrição"
             className="border border-gray-400 rounded-lg pl-2 outline-none"
           />
@@ -21,6 +31,7 @@ export default function Field() {
           <label className="text-md pl-1">Valor</label>
           <input
             type="text"
+            id="valor"
             placeholder="Digite o valor"
             onKeyDown={(event: any) => {
               if (!controlNumber.includes(event.key) || event.key === "Dead") {
@@ -33,16 +44,34 @@ export default function Field() {
       </div>
       <div className="flex gap-x-4">
         <span>
-          <input type="radio" name="group" className="mr-1 cursor-pointer" />
+          <input
+            type="radio"
+            name="group"
+            value="entrada"
+            className="mr-1 cursor-pointer"
+            onChange={() => {
+              setState(!state);
+            }}
+            checked={!state}
+          />
           Entrada
         </span>
         <span>
-          <input type="radio" name="group" className="mr-1 cursor-pointer" />
+          <input
+            type="radio"
+            name="group"
+            value="saida"
+            checked={state}
+            onChange={() => {
+              setState(!state);
+            }}
+            className="mr-1 cursor-pointer"
+          />
           Saída
         </span>
       </div>
       <div>
-        <button className="p-2 bg-green-700 rounded-xl text-white">
+        <button id="add" className="p-2 bg-green-700 rounded-xl text-white">
           Adicionar
         </button>
       </div>
